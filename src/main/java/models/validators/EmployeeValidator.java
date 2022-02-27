@@ -121,6 +121,6 @@ public class EmployeeValidator {
     public static List<String> validate(EmployeeService service, EmployeeView ev, boolean codeDuplicateCheckFlag,
             boolean passwordCheckFlag) {
         // TODO 自動生成されたメソッド・スタブ
-        return null;
+        return new ArrayList<String>();
     }
 }
