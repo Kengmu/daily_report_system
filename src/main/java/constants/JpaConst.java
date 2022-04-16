@@ -40,9 +40,25 @@ public interface JpaConst {
     String REP_COL_CREATED_AT = "created_at"; //登録日時
     String REP_COL_UPDATED_AT = "updated_at"; //更新日時
 
+
+
+    //勤怠テーブル
+    String TABLE_ATT = "Attendance"; //テーブル名
+    String ATT_COL_ID = "id"; //id
+    String ATT_COL_EMP = "employee_id"; //日報を作成した従業員のid
+    String ATT_COL_ATT_DATE = "report_date"; //いつの日報かを示す日付
+    String ATT_COL_TITLE = "title"; //日報のタイトル
+    String ATT_COL_CONTENT = "content"; //日報の内容
+    String ATT_COL_CREATED_AT = "created_at"; //登録日時
+    String ATT_COL_UPDATED_AT = "updated_at"; //更新日時
+
+
+
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
+    String ENTITY_ATT = "Attendance";
+
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
@@ -61,6 +77,7 @@ public interface JpaConst {
     String Q_EMP_GET_BY_CODE_AND_PASS_DEF = "SELECT e FROM Employee AS e WHERE e.deleteFlag = 0 AND e.code = :" + JPQL_PARM_CODE + " AND e.password = :" + JPQL_PARM_PASSWORD;
     //指定した社員番号を保持する従業員の件数を取得する
     String Q_EMP_COUNT_RESISTERED_BY_CODE = ENTITY_EMP + ".countRegisteredByCode";
+
     String Q_EMP_COUNT_RESISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;
     //全ての日報をidの降順に取得する
     String Q_REP_GET_ALL = ENTITY_REP + ".getAll";
@@ -74,5 +91,24 @@ public interface JpaConst {
     //指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+
+
+
+  //全ての勤怠をidの降順に取得する
+    String Q_ATT_GET_ALL = ENTITY_ATT + ".getAll";
+    String Q_ATT_GET_ALL_DEF = "SELECT a FROM Attendance AS a ORDER BY a.id DESC";
+    //全ての勤怠の件数を取得する
+    String Q_ATT_COUNT = ENTITY_ATT + ".count";
+    String Q_ATT_COUNT_DEF = "SELECT COUNT(a) FROM Attendance AS a";
+    //指定した従業員が登録した出勤を全件idの降順で取得する
+    String Q_ATT_GET_ALL_MINE = ENTITY_ATT + ".getAllMine";
+    String Q_ATT_GET_ALL_MINE_DEF = "SELECT a FROM Attendance AS a WHERE a.employee = :" + JPQL_PARM_EMPLOYEE + " ORDER BY a.id DESC";
+    //指定した従業員が登録した勤怠の件数を取得する
+    String Q_ATT_COUNT_ALL_MINE = ENTITY_ATT + ".countAllMine";
+    String Q_ATT_COUNT_ALL_MINE_DEF = "SELECT COUNT(a) FROM Attendance AS a WHERE a.employee = :" + JPQL_PARM_EMPLOYEE;
+
+
+
+
 
 }
