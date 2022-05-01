@@ -9,6 +9,8 @@
 <c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
 <c:set var="commNew" value="${ForwardConst.CMD_NEW.getValue()}" />
 
+
+
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:if test="${flush != null}">
@@ -16,11 +18,13 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>勤怠</h2>
-        <input type = "submit" value="出勤" onClick="return confirm('出勤しました')">
-        <input type = "submit" value="退勤" onClick="return confirm('退勤しました')">
-        <input type = "submit" value="休憩開始" onClick="return confirm('休憩開始しました')">
-        <input type = "submit" value="休憩終了" onClick="return confirm('休憩終了しました')">
+
+
+
+        <h2>勤怠一覧</h2>
+                <li><a href="<c:url value='?action=${actAtt}&command=${commNew}' />">勤怠へ進む</a></li>
+
+
 
 <p><a href="<c:url value='?action=${actTop}&command=${commIdx}' />">戻る</a></p>
 

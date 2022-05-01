@@ -11,6 +11,10 @@ import constants.JpaConst;
 import models.Attendance;
 import models.validators.AttendanceValidator;
 
+
+
+
+
 public class AttendanceService extends ServiceBase {
 
     /**
@@ -29,6 +33,10 @@ public class AttendanceService extends ServiceBase {
         return AttendanceConverter.toViewList(attendances);
     }
 
+
+
+
+
     /**
      * 指定した従業員が作成した日報データの件数を取得し、返却する
      * @param employee
@@ -42,6 +50,9 @@ public class AttendanceService extends ServiceBase {
 
         return count;
     }
+
+
+
 
     /**
      * 指定されたページ数の一覧画面に表示する日報データを取得し、AttendanceViewのリストで返却する
@@ -57,6 +68,9 @@ public class AttendanceService extends ServiceBase {
         return AttendanceConverter.toViewList(attendances);
     }
 
+
+
+
     /**
      * 日報テーブルのデータの件数を取得し、返却する
      * @return データの件数
@@ -67,6 +81,8 @@ public class AttendanceService extends ServiceBase {
         return attendances_count;
     }
 
+
+
     /**
      * idを条件に取得したデータをAttendanceViewのインスタンスで返却する
      * @param id
@@ -76,27 +92,39 @@ public class AttendanceService extends ServiceBase {
         return AttendanceConverter.toView(findOneInternal(id));
     }
 
+
+
+
     /**
-     * 画面から入力された日報の登録内容を元にデータを1件作成し、日報テーブルに登録する
-     * @param rv 日報の登録内容
+     * 画面から入力された勤怠の登録内容を元にデータを1件作成し、勤怠テーブルに登録する
+     * @param av 勤怠の登録内容
      * @return バリデーションで発生したエラーのリスト
      */
     public List<String> create(AttendanceView av) {
+
         List<String> errors = AttendanceValidator.validate(av);
+
         if (errors.size() == 0) {
             LocalDateTime ldt = LocalDateTime.now();
             av.setCreatedAt(ldt);
             av.setUpdatedAt(ldt);
+            System.out.println("＊＊＊＊＊＊＊＊＊＊AttendanceService" + av.getEmployee().getName());
             createInternal(av);
+
         }
+
 
         //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
         return errors;
     }
 
+
+
+
+
     /**
-     * 画面から入力された日報の登録内容を元に、日報データを更新する
-     * @param av 日報の更新内容
+     * 画面から入力された勤怠の登録内容を元に、勤怠データを更新する
+     * @param av 勤怠の更新内容
      * @return バリデーションで発生したエラーのリスト
      */
     public List<String> update(AttendanceView av) {
@@ -117,6 +145,9 @@ public class AttendanceService extends ServiceBase {
         return errors;
     }
 
+
+
+
     /**
      * idを条件にデータを1件取得する
      * @param id
@@ -126,9 +157,12 @@ public class AttendanceService extends ServiceBase {
         return em.find(Attendance.class, id);
     }
 
+
+
+
     /**
      * 勤怠データを1件登録する
-     * @param av 日報データ
+     * @param av 勤怠データ
      */
     private void createInternal(AttendanceView av) {
 
@@ -138,9 +172,11 @@ public class AttendanceService extends ServiceBase {
 
     }
 
+
+
     /**
-     * 日報データを更新する
-     * @param av 日報データ
+     * 勤怠データを更新する
+     * @param av 勤怠データ
      */
     private void updateInternal(AttendanceView av) {
 
@@ -150,5 +186,7 @@ public class AttendanceService extends ServiceBase {
         em.getTransaction().commit();
 
     }
+
+
 
 }

@@ -41,10 +41,6 @@ public enum ForwardConst {
     FW_REP_NEW("reports/new"),
     FW_REP_EDIT("reports/edit"),
     FW_ATT_NEW("attendances/new"),
-
-    /**
-     * 文字列
-     */
     FW_ATT_EDIT("attendances/edit"),
     FW_ATT_INDEX("attendances/index");
 

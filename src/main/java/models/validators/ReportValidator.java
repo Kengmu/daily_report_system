@@ -34,6 +34,10 @@ public class ReportValidator {
         return errors;
     }
 
+
+
+
+
     /**
      * タイトルに入力値があるかをチェックし、入力値がなければエラーメッセージを返却
      * @param title タイトル

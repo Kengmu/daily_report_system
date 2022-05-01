@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,7 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * 日報データのDTOモデル
+ * 勤怠データのDTOモデル
  *
  */
 @Table(name = JpaConst.TABLE_ATT)
@@ -41,6 +40,8 @@ import lombok.Setter;
             query = JpaConst.Q_ATT_COUNT_ALL_MINE_DEF)
 })
 
+
+
 @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)
 @Setter //全てのクラスフィールドについてsetterを自動生成する(Lombok)
 @NoArgsConstructor //引数なしコンストラクタを自動生成する(Lombok)
@@ -57,30 +58,32 @@ public class Attendance {
     private Integer id;
 
     /**
-     * 日報を登録した従業員
+     * 勤怠を登録した従業員
      */
     @ManyToOne
     @JoinColumn(name = JpaConst.ATT_COL_EMP, nullable = false)
     private Employee employee;
 
     /**
-     * いつの日報かを示す日付
+     * いつの勤怠かを示す日付
      */
     @Column(name = JpaConst.ATT_COL_ATT_DATE, nullable = false)
     private LocalDate attendanceDate;
 
-    /**
-     * 日報のタイトル
-     */
-    @Column(name = JpaConst.ATT_COL_TITLE, length = 255, nullable = false)
-    private String title;
 
-    /**
-     * 日報の内容
-     */
-    @Lob
-    @Column(name = JpaConst.ATT_COL_CONTENT, nullable = false)
-    private String content;
+
+    @Column(name = JpaConst.ATT_COL_AT_WORK, nullable = false)
+    private String AtWork;
+
+    @Column(name = JpaConst.ATT_COL_BREAK_START, nullable = false)
+    private String BreakStart;
+
+    @Column(name = JpaConst.ATT_COL_END_OF_BREAK, nullable = false)
+    private String EndOfBreak;
+
+    @Column(name = JpaConst.ATT_COL_LEAVING_WORK, nullable = false)
+    private String LeavingWork;
+
 
     /**
      * 登録日時
@@ -93,5 +96,10 @@ public class Attendance {
      */
     @Column(name = JpaConst.ATT_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
+
+
+
+
+
 
 }

@@ -6,14 +6,14 @@ import java.util.List;
 import models.Attendance;
 
 /**
- * 日報データのDTOモデル⇔Viewモデルの変換を行うクラス
+ * 勤怠データのDTOモデル⇔Viewモデルの変換を行うクラス
  *
  */
 public class AttendanceConverter {
 
     /**
      * ViewモデルのインスタンスからDTOモデルのインスタンスを作成する
-     * @param rv AttendanceViewのインスタンス
+     * @param av AttendanceViewのインスタンス
      * @return Attendanceのインスタンス
      */
     public static Attendance toModel(AttendanceView av) {
@@ -21,8 +21,10 @@ public class AttendanceConverter {
                 av.getId(),
                 EmployeeConverter.toModel(av.getEmployee()),
                 av.getAttendanceDate(),
-                av.getTitle(),
-                av.getContent(),
+                av.getAt_Work(),
+                av.getBreak_Start(),
+                av.getEnd_Of_Break(),
+                av.getLeaving_Work(),
                 av.getCreatedAt(),
                 av.getUpdatedAt());
     }
@@ -42,10 +44,14 @@ public class AttendanceConverter {
                 a.getId(),
                 EmployeeConverter.toView(a.getEmployee()),
                 a.getAttendanceDate(),
-                a.getTitle(),
-                a.getContent(),
+                a.getAtWork(),
+                a.getBreakStart(),
+                a.getEndOfBreak(),
+                a.getLeavingWork(),
                 a.getCreatedAt(),
                 a.getUpdatedAt());
+
+
     }
 
     /**
@@ -72,8 +78,6 @@ public class AttendanceConverter {
         a.setId(av.getId());
         a.setEmployee(EmployeeConverter.toModel(av.getEmployee()));
         a.setAttendanceDate(av.getAttendanceDate());
-        a.setTitle(av.getTitle());
-        a.setContent(av.getContent());
         a.setCreatedAt(av.getCreatedAt());
         a.setUpdatedAt(av.getUpdatedAt());
 

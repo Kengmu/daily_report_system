@@ -43,15 +43,17 @@ public interface JpaConst {
 
 
     //勤怠テーブル
-    String TABLE_ATT = "Attendance"; //テーブル名
+    String TABLE_ATT = "Attendances"; //テーブル名
+  //勤怠テーブルカラム
     String ATT_COL_ID = "id"; //id
-    String ATT_COL_EMP = "employee_id"; //日報を作成した従業員のid
-    String ATT_COL_ATT_DATE = "report_date"; //いつの日報かを示す日付
-    String ATT_COL_TITLE = "title"; //日報のタイトル
-    String ATT_COL_CONTENT = "content"; //日報の内容
+    String ATT_COL_EMP = "employee_id"; //勤怠を作成した従業員のid
+    String ATT_COL_ATT_DATE = "report_date"; //いつの勤怠かを示す日付
+    String ATT_COL_AT_WORK = "at_work";
+    String ATT_COL_BREAK_START = "break_start";
+    String ATT_COL_END_OF_BREAK = "end_of_break";
+    String ATT_COL_LEAVING_WORK = "leaving_work";
     String ATT_COL_CREATED_AT = "created_at"; //登録日時
     String ATT_COL_UPDATED_AT = "updated_at"; //更新日時
-
 
 
     //Entity名
