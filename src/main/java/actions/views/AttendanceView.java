@@ -64,4 +64,6 @@ public class AttendanceView {
      */
     private LocalDateTime updatedAt;
 
+
+
 }

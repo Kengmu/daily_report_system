@@ -30,18 +30,18 @@
 <button type="${AttributeConst.ATT_ATTENDANCE_AT_WORK.getValue()}">出勤</button><br />
 <br /><br />
 
-<button type="${AttributeConst.BREAK_START.getValue()}">休憩開始</button><br />
+<button type="${AttributeConst.ATT_ATTENDANCE_BREAK_START.getValue()}">休憩開始</button><br />
 <br /><br />
 
-<button type="${AttributeConst.END_OF_BREAK.getValue()}">休憩終了</button><br />
+<button type="${AttributeConst.ATT_ATTENDANCE_END_OF_BREAK.getValue()}">休憩終了</button><br />
 <br /><br />
 
-<button type="${AttributeConst.LEAVING_WORK.getValue()}">退勤</button><br />
+<button type="${AttributeConst.ATT_ATTENDANCE_LEAVING_WORK.getValue()}">退勤</button><br />
 <br /><br />
 
 
-
-<input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
 <input type="hidden" name="${AttributeConst.ATT_ID.getValue()}" value="${attendance.id}" />
+<input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+
 
 

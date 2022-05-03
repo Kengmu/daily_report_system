@@ -105,6 +105,7 @@ public class AttendanceService extends ServiceBase {
         List<String> errors = AttendanceValidator.validate(av);
 
         if (errors.size() == 0) {
+
             LocalDateTime ldt = LocalDateTime.now();
             av.setCreatedAt(ldt);
             av.setUpdatedAt(ldt);
