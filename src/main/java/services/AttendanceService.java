@@ -1,6 +1,5 @@
 package services;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import actions.views.AttendanceConverter;
@@ -9,7 +8,6 @@ import actions.views.EmployeeConverter;
 import actions.views.EmployeeView;
 import constants.JpaConst;
 import models.Attendance;
-import models.validators.AttendanceValidator;
 
 
 
@@ -95,56 +93,6 @@ public class AttendanceService extends ServiceBase {
 
 
 
-    /**
-     * 画面から入力された勤怠の登録内容を元にデータを1件作成し、勤怠テーブルに登録する
-     * @param av 勤怠の登録内容
-     * @return バリデーションで発生したエラーのリスト
-     */
-    public List<String> create(AttendanceView av) {
-
-        List<String> errors = AttendanceValidator.validate(av);
-
-        if (errors.size() == 0) {
-
-            LocalDateTime ldt = LocalDateTime.now();
-            av.setCreatedAt(ldt);
-            av.setUpdatedAt(ldt);
-            System.out.println("＊＊＊＊＊＊＊＊＊＊AttendanceService" + av.getEmployee().getName());
-            createInternal(av);
-
-        }
-
-
-        //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
-        return errors;
-    }
-
-
-
-
-
-    /**
-     * 画面から入力された勤怠の登録内容を元に、勤怠データを更新する
-     * @param av 勤怠の更新内容
-     * @return バリデーションで発生したエラーのリスト
-     */
-    public List<String> update(AttendanceView av) {
-
-        //バリデーションを行う
-        List<String> errors = AttendanceValidator.validate(av);
-
-        if (errors.size() == 0) {
-
-            //更新日時を現在時刻に設定
-            LocalDateTime ldt = LocalDateTime.now();
-            av.setUpdatedAt(ldt);
-
-            updateInternal(av);
-        }
-
-        //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
-        return errors;
-    }
 
 
 
@@ -186,6 +134,24 @@ public class AttendanceService extends ServiceBase {
         AttendanceConverter.copyViewToModel(a, av);
         em.getTransaction().commit();
 
+    }
+
+
+
+
+
+    public List<String> create(AttendanceView av) {
+        // TODO 自動生成されたメソッド・スタブ
+        return null;
+    }
+
+
+
+
+
+    public List<String> update(AttendanceView av) {
+        // TODO 自動生成されたメソッド・スタブ
+        return null;
     }
 
 

@@ -95,7 +95,7 @@ public interface JpaConst {
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
 
 
-
+    String Q_ATT_COUNT_RESISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;
   //全ての勤怠をidの降順に取得する
     String Q_ATT_GET_ALL = ENTITY_ATT + ".getAll";
     String Q_ATT_GET_ALL_DEF = "SELECT a FROM Attendance AS a ORDER BY a.id DESC";

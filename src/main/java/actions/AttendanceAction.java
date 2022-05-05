@@ -130,27 +130,14 @@ public class AttendanceAction extends ActionBase {
 
             System.out.println("＊＊＊＊＊＊＊＊＊＊｜｜｜｜｜｜");
 
-            if (errors.size() > 0) {
-                //登録中にエラーがあった場合
+          //セッションに登録完了のフラッシュメッセージを設定
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
 
-                putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
-                putRequestScope(AttributeConst.ATTENDANCE, av);//入力された勤怠情報
-                putRequestScope(AttributeConst.ERR, errors);//エラーのリスト
+            //一覧画面にリダイレクト
+            redirect(ForwardConst.ACT_ATT, ForwardConst.CMD_INDEX);
 
-                //新規登録画面を再表示
-                forward(ForwardConst.FW_ATT_NEW);
+        }
 
-
-            } else {
-                //登録中にエラーがなかった場合
-
-                //セッションに登録完了のフラッシュメッセージを設定
-                putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
-
-                //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_ATT, ForwardConst.CMD_INDEX);
-            }
-       }
         System.out.println("＊＊＊＊＊＊＊＊＊＊＝＝＝＝＝");
     }
 
