@@ -1,5 +1,7 @@
 package services;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import actions.views.AttendanceConverter;
@@ -141,8 +143,16 @@ public class AttendanceService extends ServiceBase {
 
 
     public List<String> create(AttendanceView av) {
-        // TODO 自動生成されたメソッド・スタブ
-        return null;
+
+
+        List<String> errors = new ArrayList<String>();
+
+        LocalDateTime ldt = LocalDateTime.now();
+        av.setCreatedAt(ldt);
+        av.setUpdatedAt(ldt);
+        createInternal(av);
+        return errors ;
+
     }
 
 
@@ -150,8 +160,14 @@ public class AttendanceService extends ServiceBase {
 
 
     public List<String> update(AttendanceView av) {
-        // TODO 自動生成されたメソッド・スタブ
-        return null;
+
+        List<String> errors = new ArrayList<String>();
+
+        LocalDateTime ldt = LocalDateTime.now();
+        av.setCreatedAt(ldt);
+        av.setUpdatedAt(ldt);
+        createInternal(av);
+        return errors;
     }
 
 

@@ -112,6 +112,8 @@ public class AttendanceAction extends ActionBase {
             EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
             System.out.println("＊＊＊＊＊＊＊＊＊＊AttendanceAction" + ev.getName());
 
+
+
             //パラメータの値をもとに勤怠情報のインスタンスを作成する
             AttendanceView av = new AttendanceView(
                     null,
@@ -124,8 +126,12 @@ public class AttendanceAction extends ActionBase {
                     null,
                     null);
 
+
+
             //勤怠情報登録
             List<String> errors = service.create(av);
+
+
 
 
             System.out.println("＊＊＊＊＊＊＊＊＊＊｜｜｜｜｜｜");
