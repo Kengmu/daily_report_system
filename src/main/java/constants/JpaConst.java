@@ -59,7 +59,7 @@ public interface JpaConst {
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
-    String ENTITY_ATT = "Attendance";
+    String ENTITY_ATT = "Attendance"; //勤怠
 
 
     //JPQL内パラメータ

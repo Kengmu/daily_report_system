@@ -16,6 +16,8 @@ import lombok.Setter;
 @Setter //全てのクラスフィールドについてsetterを自動生成する(Lombok)
 @NoArgsConstructor //引数なしコンストラクタを自動生成する(Lombok)
 @AllArgsConstructor //全てのクラスフィールドを引数にもつ引数ありコンストラクタを自動生成する(Lombok)
+
+
 public class AttendanceView {
 
     /**
@@ -31,27 +33,27 @@ public class AttendanceView {
     /**
      * いつの勤怠かを示す日付
      */
-    private LocalDate AttendanceDate;
+    private LocalDate attendanceDate;
 
     /**
      * 出勤
      */
-    private String at_Work;
+    private String at_work;
 
     /**
      * 休憩開始
      */
-    private String break_Start;
+    private String break_start;
 
     /**
      * 休憩終了
      */
-    private String end_Of_Break;
+    private String end_of_break;
 
     /**
      * 退勤
      */
-    private String leaving_Work;
+    private String leaving_work;
 
 
     /**

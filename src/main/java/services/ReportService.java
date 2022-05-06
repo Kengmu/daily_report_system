@@ -110,6 +110,7 @@ public class ReportService extends ServiceBase {
      * @return バリデーションで発生したエラーのリスト
      */
     public List<String> create(ReportView rv) {
+
         List<String> errors = ReportValidator.validate(rv);
 
         if (errors.size() == 0) {
@@ -176,6 +177,7 @@ public class ReportService extends ServiceBase {
     private void createInternal(ReportView rv) {
 
         em.getTransaction().begin();
+        System.out.println("########## model変換後atWork: " + ReportConverter.toModel(rv).getTitle());
         em.persist(ReportConverter.toModel(rv));
         em.getTransaction().commit();
 

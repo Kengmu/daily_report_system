@@ -2,7 +2,6 @@ package actions;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.servlet.ServletException;
 
@@ -55,20 +54,8 @@ public class AttendanceAction extends ActionBase {
 
 
             //勤怠データの更新をする
-            List<String> errors = service.update(av);
 
 
-            if (errors.size() > 0) {
-                //更新中にエラーが発生した場合
-
-                putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
-                putRequestScope(AttributeConst.ATTENDANCE, av); //入力された日報情報
-                putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
-
-                //編集画面を再表示
-                forward(ForwardConst.FW_ATT_EDIT);
-
-            } else {
                 //更新中にエラーがなかった場合
 
                 //セッションに更新完了のフラッシュメッセージを設定
@@ -79,7 +66,7 @@ public class AttendanceAction extends ActionBase {
 
             }
         }
-    }
+
 
 
 
@@ -98,7 +85,7 @@ public class AttendanceAction extends ActionBase {
             //勤怠の日付が入力されていなければ、今日の日付を設定
             LocalDate day = null;
 
-            System.out.println("＊＊＊＊＊＊＊＊＊＊＋＋＋＋＋");
+
 
             if (getRequestParam(AttributeConst.ATT_DATE) == null
                     || getRequestParam(AttributeConst.ATT_DATE).equals("")) {
@@ -126,15 +113,8 @@ public class AttendanceAction extends ActionBase {
                     null,
                     null);
 
+            System.out.println("＊＊＊＊＊＊＊＊＊＊aaaaa");
 
-
-            //勤怠情報登録
-            List<String> errors = service.create(av);
-
-
-
-
-            System.out.println("＊＊＊＊＊＊＊＊＊＊｜｜｜｜｜｜");
 
           //セッションに登録完了のフラッシュメッセージを設定
             putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());

@@ -1,7 +1,6 @@
 package services;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import actions.views.AttendanceConverter;
@@ -117,7 +116,13 @@ public class AttendanceService extends ServiceBase {
      */
     private void createInternal(AttendanceView av) {
 
+        System.out.println("＊＊＊＊＊＊＊＊＊＊------------");
+
         em.getTransaction().begin();
+
+        System.out.println("########## model変換後atWork: " + AttendanceConverter.toModel(av).getAt_work());
+        System.out.println("########## model変換後atWork: " + av.getAt_work());
+
         em.persist(AttendanceConverter.toModel(av));
         em.getTransaction().commit();
 
@@ -142,16 +147,16 @@ public class AttendanceService extends ServiceBase {
 
 
 
-    public List<String> create(AttendanceView av) {
+    public void create(AttendanceView av) {
 
 
-        List<String> errors = new ArrayList<String>();
 
         LocalDateTime ldt = LocalDateTime.now();
         av.setCreatedAt(ldt);
         av.setUpdatedAt(ldt);
         createInternal(av);
-        return errors ;
+
+
 
     }
 
@@ -159,15 +164,15 @@ public class AttendanceService extends ServiceBase {
 
 
 
-    public List<String> update(AttendanceView av) {
+    public void update(AttendanceView av) {
 
-        List<String> errors = new ArrayList<String>();
+
 
         LocalDateTime ldt = LocalDateTime.now();
         av.setCreatedAt(ldt);
         av.setUpdatedAt(ldt);
         createInternal(av);
-        return errors;
+
     }
 
 

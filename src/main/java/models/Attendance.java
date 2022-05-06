@@ -73,16 +73,16 @@ public class Attendance {
 
 
     @Column(name = JpaConst.ATT_COL_AT_WORK, nullable = false)
-    private String AtWork;
+    private String at_work;
 
     @Column(name = JpaConst.ATT_COL_BREAK_START, nullable = false)
-    private String BreakStart;
+    private String break_start;
 
     @Column(name = JpaConst.ATT_COL_END_OF_BREAK, nullable = false)
-    private String EndOfBreak;
+    private String end_of_break;
 
     @Column(name = JpaConst.ATT_COL_LEAVING_WORK, nullable = false)
-    private String LeavingWork;
+    private String leaving_work;
 
 
     /**

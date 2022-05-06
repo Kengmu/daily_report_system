@@ -17,17 +17,26 @@ public class AttendanceConverter {
      * @return Attendanceのインスタンス
      */
     public static Attendance toModel(AttendanceView av) {
+
         return new Attendance(
+
                 av.getId(),
                 EmployeeConverter.toModel(av.getEmployee()),
                 av.getAttendanceDate(),
-                av.getAt_Work(),
-                av.getBreak_Start(),
-                av.getEnd_Of_Break(),
-                av.getLeaving_Work(),
+                av.getAt_work(),
+                av.getBreak_start(),
+                av.getEnd_of_break(),
+                av.getLeaving_work(),
                 av.getCreatedAt(),
                 av.getUpdatedAt());
+
     }
+
+
+
+
+
+
 
     /**
      * DTOモデルのインスタンスからViewモデルのインスタンスを作成する
@@ -44,15 +53,17 @@ public class AttendanceConverter {
                 a.getId(),
                 EmployeeConverter.toView(a.getEmployee()),
                 a.getAttendanceDate(),
-                a.getAtWork(),
-                a.getBreakStart(),
-                a.getEndOfBreak(),
-                a.getLeavingWork(),
+                a.getAt_work(),
+                a.getBreak_start(),
+                a.getEnd_of_break(),
+                a.getAt_work(),
                 a.getCreatedAt(),
                 a.getUpdatedAt());
 
 
     }
+
+
 
     /**
      * DTOモデルのリストからViewモデルのリストを作成する
@@ -69,15 +80,22 @@ public class AttendanceConverter {
         return evs;
     }
 
+
+
+
     /**
      * Viewモデルの全フィールドの内容をDTOモデルのフィールドにコピーする
-     * @param r DTOモデル(コピー先)
-     * @param rv Viewモデル(コピー元)
+     * @param a DTOモデル(コピー先)
+     * @param av Viewモデル(コピー元)
      */
     public static void copyViewToModel(Attendance a, AttendanceView av) {
         a.setId(av.getId());
         a.setEmployee(EmployeeConverter.toModel(av.getEmployee()));
         a.setAttendanceDate(av.getAttendanceDate());
+        a.setAt_work(av.getAt_work());
+        a.setBreak_start(av.getBreak_start());
+        a.setEnd_of_break(av.getEnd_of_break());
+        a.setLeaving_work(av.getLeaving_work());
         a.setCreatedAt(av.getCreatedAt());
         a.setUpdatedAt(av.getUpdatedAt());
 

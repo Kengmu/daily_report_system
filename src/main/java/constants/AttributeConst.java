@@ -54,8 +54,6 @@ public enum AttributeConst {
     //勤怠
     ATTENDANCE("attendance"),
     ATT_COUNT("attendance_count"),
-    ATT_TITLE("title"),
-    ATT_CONTENT("content"),
     ATT_DATE("attendance_date"),
     ATT_ID("id"),
     ATTENDANCES("attendances"),
@@ -70,6 +68,8 @@ public enum AttributeConst {
     private final String text;
     private final Integer i;
 
+
+
     private AttributeConst(final String text) {
         this.text = text;
         this.i = null;
@@ -79,6 +79,8 @@ public enum AttributeConst {
         this.text = null;
         this.i = i;
     }
+
+
 
     public String getValue() {
         return this.text;
