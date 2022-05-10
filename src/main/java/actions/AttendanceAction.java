@@ -92,9 +92,9 @@ public class AttendanceAction extends ActionBase {
             EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
             LocalDateTime at_work = LocalDateTime.now();
-            LocalDateTime break_start = null;
-            LocalDateTime end_of_break = null;
-            LocalDateTime leaving_work = null;
+            LocalDateTime break_start = LocalDateTime.now();
+            LocalDateTime end_of_break = LocalDateTime.now();
+            LocalDateTime leaving_work = LocalDateTime.now();
 
 
 
@@ -117,7 +117,7 @@ public class AttendanceAction extends ActionBase {
             List<String> errors = service.create(av);
 
 
-            if (errors == null) {
+            if (errors != null) {
 
           //セッションに登録完了のフラッシュメッセージを設定
             putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());

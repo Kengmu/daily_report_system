@@ -81,19 +81,19 @@ public class Attendance {
     /**
      * 休憩開始情報
      */
-    @Column(name = JpaConst.ATT_COL_BREAK_START)
+    @Column(name = JpaConst.ATT_COL_BREAK_START, nullable = false)
     private LocalDateTime attendance_break_start;
 
     /**
      * 休憩終了情報
      */
-    @Column(name = JpaConst.ATT_COL_END_OF_BREAK)
+    @Column(name = JpaConst.ATT_COL_END_OF_BREAK, nullable = false)
     private LocalDateTime attendance_end_of_break;
 
     /**
      * 退勤情報
      */
-    @Column(name = JpaConst.ATT_COL_LEAVING_WORK)
+    @Column(name = JpaConst.ATT_COL_LEAVING_WORK, nullable = false)
     private LocalDateTime attendance_leaving_work;
 
     /**
