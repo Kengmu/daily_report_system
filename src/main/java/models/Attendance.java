@@ -47,6 +47,8 @@ import lombok.Setter;
 @NoArgsConstructor //引数なしコンストラクタを自動生成する(Lombok)
 @AllArgsConstructor //全てのクラスフィールドを引数にもつ引数ありコンストラクタを自動生成する(Lombok)
 @Entity
+
+
 public class Attendance {
 
     /**
@@ -70,20 +72,29 @@ public class Attendance {
     @Column(name = JpaConst.ATT_COL_ATT_DATE, nullable = false)
     private LocalDate attendanceDate;
 
-
-
+    /**
+     * 出勤情報
+     */
     @Column(name = JpaConst.ATT_COL_AT_WORK, nullable = false)
-    private String at_work;
+    private LocalDateTime attendance_at_work;
 
-    @Column(name = JpaConst.ATT_COL_BREAK_START, nullable = false)
-    private String break_start;
+    /**
+     * 休憩開始情報
+     */
+    @Column(name = JpaConst.ATT_COL_BREAK_START)
+    private LocalDateTime attendance_break_start;
 
-    @Column(name = JpaConst.ATT_COL_END_OF_BREAK, nullable = false)
-    private String end_of_break;
+    /**
+     * 休憩終了情報
+     */
+    @Column(name = JpaConst.ATT_COL_END_OF_BREAK)
+    private LocalDateTime attendance_end_of_break;
 
-    @Column(name = JpaConst.ATT_COL_LEAVING_WORK, nullable = false)
-    private String leaving_work;
-
+    /**
+     * 退勤情報
+     */
+    @Column(name = JpaConst.ATT_COL_LEAVING_WORK)
+    private LocalDateTime attendance_leaving_work;
 
     /**
      * 登録日時
@@ -96,10 +107,6 @@ public class Attendance {
      */
     @Column(name = JpaConst.ATT_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
-
-
-
-
 
 
 }

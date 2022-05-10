@@ -1,6 +1,7 @@
 package services;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import actions.views.AttendanceConverter;
@@ -17,7 +18,7 @@ import models.Attendance;
 public class AttendanceService extends ServiceBase {
 
     /**
-     * 指定した従業員が作成した日報データを、指定されたページ数の一覧画面に表示する分取得しAttendanceViewのリストで返却する
+     * 指定した従業員が作成した勤怠データを、指定されたページ数の一覧画面に表示する分取得しAttendanceViewのリストで返却する
      * @param employee 従業員
      * @param page ページ数
      * @return 一覧画面に表示するデータのリスト
@@ -37,7 +38,7 @@ public class AttendanceService extends ServiceBase {
 
 
     /**
-     * 指定した従業員が作成した日報データの件数を取得し、返却する
+     * 指定した従業員が作成した勤怠データの件数を取得し、返却する
      * @param employee
      * @return 日報データの件数
      */
@@ -54,7 +55,7 @@ public class AttendanceService extends ServiceBase {
 
 
     /**
-     * 指定されたページ数の一覧画面に表示する日報データを取得し、AttendanceViewのリストで返却する
+     * 指定されたページ数の一覧画面に表示する勤怠データを取得し、AttendanceViewのリストで返却する
      * @param page ページ数
      * @return 一覧画面に表示するデータのリスト
      */
@@ -71,7 +72,7 @@ public class AttendanceService extends ServiceBase {
 
 
     /**
-     * 日報テーブルのデータの件数を取得し、返却する
+     * 勤怠テーブルのデータの件数を取得し、返却する
      * @return データの件数
      */
     public long countAll() {
@@ -93,6 +94,45 @@ public class AttendanceService extends ServiceBase {
 
 
 
+
+
+
+
+    public List<String> create(AttendanceView av) {
+
+
+        List<String> errors = new ArrayList<String>();
+
+
+            LocalDateTime ldt = LocalDateTime.now();
+            av.setCreatedAt(ldt);
+            av.setUpdatedAt(ldt);
+            createInternal(av);
+
+
+
+        //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
+        return errors;
+    }
+
+
+
+
+    public List<String> update(AttendanceView av) {
+
+
+        List<String> errors = new ArrayList<String>();
+
+
+            LocalDateTime ldt = LocalDateTime.now();
+            av.setUpdatedAt(ldt);
+            updateInternal(av);
+
+
+
+        //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
+        return errors;
+    }
 
 
 
@@ -120,10 +160,13 @@ public class AttendanceService extends ServiceBase {
 
         em.getTransaction().begin();
 
-        System.out.println("########## model変換後atWork: " + AttendanceConverter.toModel(av).getAt_work());
-        System.out.println("########## model変換後atWork: " + av.getAt_work());
+        System.out.println("########## model変換後atWork: " + AttendanceConverter.toModel(av).getAttendance_at_work());
+        System.out.println("########## atWork: " + av.getAttendance_at_work());
 
         em.persist(AttendanceConverter.toModel(av));
+
+        System.out.println("＊＊＊＊＊＊＊＊＊＊勤怠データを1件登録");
+
         em.getTransaction().commit();
 
     }
@@ -144,36 +187,6 @@ public class AttendanceService extends ServiceBase {
     }
 
 
-
-
-
-    public void create(AttendanceView av) {
-
-
-
-        LocalDateTime ldt = LocalDateTime.now();
-        av.setCreatedAt(ldt);
-        av.setUpdatedAt(ldt);
-        createInternal(av);
-
-
-
-    }
-
-
-
-
-
-    public void update(AttendanceView av) {
-
-
-
-        LocalDateTime ldt = LocalDateTime.now();
-        av.setCreatedAt(ldt);
-        av.setUpdatedAt(ldt);
-        createInternal(av);
-
-    }
 
 
 

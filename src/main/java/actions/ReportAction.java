@@ -29,7 +29,6 @@ public class ReportAction extends ActionBase {
     public void process() throws ServletException, IOException {
 
         service = new ReportService();
-
         //メソッドを実行
         invoke();
         service.close();

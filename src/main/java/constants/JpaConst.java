@@ -41,13 +41,12 @@ public interface JpaConst {
     String REP_COL_UPDATED_AT = "updated_at"; //更新日時
 
 
-
-    //勤怠テーブル
+  //勤怠テーブル
     String TABLE_ATT = "Attendances"; //テーブル名
   //勤怠テーブルカラム
     String ATT_COL_ID = "id"; //id
     String ATT_COL_EMP = "employee_id"; //勤怠を作成した従業員のid
-    String ATT_COL_ATT_DATE = "report_date"; //いつの勤怠かを示す日付
+    String ATT_COL_ATT_DATE = "attendance_date"; //いつの勤怠かを示す日付
     String ATT_COL_AT_WORK = "at_work";
     String ATT_COL_BREAK_START = "break_start";
     String ATT_COL_END_OF_BREAK = "end_of_break";

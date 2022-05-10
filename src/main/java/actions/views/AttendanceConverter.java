@@ -11,6 +11,9 @@ import models.Attendance;
  */
 public class AttendanceConverter {
 
+
+
+
     /**
      * ViewモデルのインスタンスからDTOモデルのインスタンスを作成する
      * @param av AttendanceViewのインスタンス
@@ -19,14 +22,13 @@ public class AttendanceConverter {
     public static Attendance toModel(AttendanceView av) {
 
         return new Attendance(
-
                 av.getId(),
                 EmployeeConverter.toModel(av.getEmployee()),
                 av.getAttendanceDate(),
-                av.getAt_work(),
-                av.getBreak_start(),
-                av.getEnd_of_break(),
-                av.getLeaving_work(),
+                av.getAttendance_at_work(),
+                null,
+                av.getAttendance_end_of_break(),
+                av.getAttendance_leaving_work(),
                 av.getCreatedAt(),
                 av.getUpdatedAt());
 
@@ -45,18 +47,15 @@ public class AttendanceConverter {
      */
     public static AttendanceView toView(Attendance a) {
 
-        if (a == null) {
-            return null;
-        }
 
         return new AttendanceView(
                 a.getId(),
                 EmployeeConverter.toView(a.getEmployee()),
                 a.getAttendanceDate(),
-                a.getAt_work(),
-                a.getBreak_start(),
-                a.getEnd_of_break(),
-                a.getAt_work(),
+                a.getAttendance_at_work(),
+                null,
+                a.getAttendance_end_of_break(),
+                a.getAttendance_leaving_work(),
                 a.getCreatedAt(),
                 a.getUpdatedAt());
 
@@ -92,10 +91,10 @@ public class AttendanceConverter {
         a.setId(av.getId());
         a.setEmployee(EmployeeConverter.toModel(av.getEmployee()));
         a.setAttendanceDate(av.getAttendanceDate());
-        a.setAt_work(av.getAt_work());
-        a.setBreak_start(av.getBreak_start());
-        a.setEnd_of_break(av.getEnd_of_break());
-        a.setLeaving_work(av.getLeaving_work());
+        a.setAttendance_at_work(av.getAttendance_at_work());
+        a.setAttendance_break_start(av.getAttendance_break_start());
+        a.setAttendance_end_of_break(av.getAttendance_end_of_break());
+        a.setAttendance_leaving_work(av.getAttendance_leaving_work());
         a.setCreatedAt(av.getCreatedAt());
         a.setUpdatedAt(av.getUpdatedAt());
 

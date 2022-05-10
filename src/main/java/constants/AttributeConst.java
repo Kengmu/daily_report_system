@@ -53,12 +53,10 @@ public enum AttributeConst {
 
     //勤怠
     ATTENDANCE("attendance"),
+    ATTENDANCES("attendances"),
     ATT_COUNT("attendance_count"),
     ATT_DATE("attendance_date"),
     ATT_ID("id"),
-    ATTENDANCES("attendances"),
-    ATT_CREATED_AT("created_at"),
-    ATT_UPDATED_AT("updated_at"),
     ATT_ATTENDANCE_AT_WORK("attendance_at_work"),
     ATT_ATTENDANCE_BREAK_START("attendance_break_start"),
     ATT_ATTENDANCE_END_OF_BREAK("attendance_end_of_break"),

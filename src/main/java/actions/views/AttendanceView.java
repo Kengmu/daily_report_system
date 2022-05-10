@@ -38,22 +38,23 @@ public class AttendanceView {
     /**
      * 出勤
      */
-    private String at_work;
+    private LocalDateTime attendance_at_work;
 
     /**
      * 休憩開始
      */
-    private String break_start;
+
+    private LocalDateTime attendance_break_start;
 
     /**
      * 休憩終了
      */
-    private String end_of_break;
+    private LocalDateTime attendance_end_of_break;
 
     /**
      * 退勤
      */
-    private String leaving_work;
+    private LocalDateTime attendance_leaving_work;
 
 
     /**
