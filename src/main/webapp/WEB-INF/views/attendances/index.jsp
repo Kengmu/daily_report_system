@@ -19,10 +19,30 @@
             </div>
         </c:if>
 
-
-
-        <h2>勤怠一覧</h2>
+        <h2>勤怠　一覧</h2>
                 <li><a href="<c:url value='?action=${actAtt}&command=${commNew}' />">勤怠へ進む</a></li>
+
+         <table id="attendance_list">
+            <tbody>
+                <tr>
+                    <th class="attendance_name">氏名</th>
+                    <th class="attendance_date">日付</th>
+                    <th class="attendance_action">操作</th>
+                </tr>
+                <c:forEach var="attendance" items="${attendances}" varStatus="status">
+                    <fmt:parseDate value="${attendance.attendanceDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
+
+                    <tr class="row${status.count % 2}">
+                        <td class="attendance_name"><c:out value="${attendance.employee.name}" /></td>
+                        <td class="attendance_date"><fmt:formatDate value='${attendanceDay}' pattern='yyyy-MM-dd' /></td>
+                        <td class="attendance_action"><a href="<c:url value='?action=${actAtt}&command=${commShow}&id=${attendance.id}' />">詳細を見る</a></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+
+
+
 
 
 

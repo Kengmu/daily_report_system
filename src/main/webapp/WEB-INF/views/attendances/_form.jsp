@@ -32,17 +32,28 @@
 <br /><br />
 
 
-<button type = "submit" name="${AttributeConst.ATT_ATTENDANCE_AT_WORK.getValue()}"value="${attendance.attendance_at_work}">出勤</button><br />
-<br /><br />
 
-<button type = "submit" name="${AttributeConst.ATT_ATTENDANCE_BREAK_START.getValue()}"value="${attendance.attendance_break_start}">休憩開始</button><br />
-<br /><br />
+        <form action="/?action=Attendance&command=atWork">
+            <button type="submit" name="${AttributeConst.ATT_ATTENDANCE_AT_WORK.getValue()}" value="${attendance.attendance_at_work}">出勤</button><br />
+            <br /><br />
+        </form>
 
-<button type = "submit" name="${AttributeConst.ATT_ATTENDANCE_END_OF_BREAK.getValue()}"value="${attendance.attendance_end_of_break}">休憩終了</button><br />
-<br /><br />
+        <form action="/?action=Attendance&command=breakStart">
+            <button type="submit" name="${AttributeConst.ATT_ATTENDANCE_BREAK_START.getValue()}" value="${attendance.attendance_break_start}">休憩開始</button><br />
+            <br /><br />
+        </form>
 
-<button type = "submit" name="${AttributeConst.ATT_ATTENDANCE_LEAVING_WORK.getValue()}"value="${attendance.attendance_leaving_work}">退勤</button><br />
-<br /><br />
+        <form action="/?action=Attendance&command=endOfBreak">
+            <button type="submit" name="${AttributeConst.ATT_ATTENDANCE_END_OF_BREAK.getValue()}" value="${attendance.attendance_end_of_break}">休憩終了</button><br />
+            <br /><br />
+        </form>
+
+        <form action="/?action=Attendance&command=leavingWork">
+            <button type="submit" name="${AttributeConst.ATT_ATTENDANCE_LEAVING_WORK.getValue()}" value="${attendance.attendance_leaving_work}">退勤</button><br />
+            <br /><br />
+        </form>
+
+
 
 
 <input type="hidden" name="${AttributeConst.ATT_ID.getValue()}" value="${attendance.id}" />

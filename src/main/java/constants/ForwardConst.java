@@ -27,6 +27,12 @@ public enum ForwardConst {
     CMD_EDIT("edit"),
     CMD_UPDATE("update"),
     CMD_DESTROY("destroy"),
+    CMD_ATWORK("atWork"),
+    CMD_BREAKSTART("breakStart"),
+    CMD_ENDOFBREAK("endOfBreak"),
+    CMD_LEAVINGWORK("leavingWork"),
+
+
 
     //jsp
     FW_ERR_UNKNOWN("error/unknown"),

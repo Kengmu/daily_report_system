@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
-import actions.views.AttendanceConverter;
 import actions.views.AttendanceView;
 import actions.views.EmployeeView;
 import constants.AttributeConst;
@@ -51,12 +50,6 @@ public class AttendanceAction extends ActionBase {
             //入力された勤怠内容を設定する
             av.setAttendanceDate(toLocalDate(getRequestParam(AttributeConst.ATT_DATE)));
 
-            LocalDateTime break_start = LocalDateTime.now();
-            LocalDateTime end_of_break = LocalDateTime.now();
-            LocalDateTime leaving_work = LocalDateTime.now();
-
-
-
             //勤怠データの更新をする
             List<String> errors = service.update(av);
 
@@ -74,29 +67,25 @@ public class AttendanceAction extends ActionBase {
 
 
 
-    public void create() throws ServletException, IOException {
+    public void atWork() throws ServletException, IOException {
 
         //CSRF対策 tokenのチェック
         if (checkToken()) {
             //勤怠の日付が入力されていなければ、今日の日付を設定
             LocalDate day = null;
-
             if (getRequestParam(AttributeConst.ATT_DATE) == null || getRequestParam(AttributeConst.ATT_DATE).equals("")) {
                 day = LocalDate.now();
             } else {
                 day = LocalDate.parse(getRequestParam(AttributeConst.ATT_DATE));
             }
 
-
             //セッションからログイン中の従業員情報を取得
             EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
             LocalDateTime at_work = LocalDateTime.now();
-            LocalDateTime break_start = LocalDateTime.now();
-            LocalDateTime end_of_break = LocalDateTime.now();
-            LocalDateTime leaving_work = LocalDateTime.now();
-
-
+            LocalDateTime break_start = null;
+            LocalDateTime end_of_break = null;
+            LocalDateTime leaving_work = null;
 
             //パラメータの値をもとに勤怠情報のインスタンスを作成する
             AttendanceView av = new AttendanceView(
@@ -109,10 +98,6 @@ public class AttendanceAction extends ActionBase {
                     leaving_work,
                     null,
                     null);
-
-            System.out.println("########## : " + av.getAttendance_at_work());
-            System.out.println("########## model変換後atWorkあああああ: " + AttendanceConverter.toModel(av).getAttendance_at_work());
-
 
             List<String> errors = service.create(av);
 
@@ -129,6 +114,22 @@ public class AttendanceAction extends ActionBase {
         }
 
         System.out.println("＊＊＊＊＊＊＊＊＊＊＝＝＝＝＝");
+    }
+
+
+
+    public void breakStart() throws ServletException, IOException {
+
+    }
+
+
+    public void endOfBreak() throws ServletException, IOException {
+
+    }
+
+
+    public void leavingWork() throws ServletException, IOException {
+
     }
 
 
