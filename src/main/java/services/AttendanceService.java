@@ -134,10 +134,11 @@ public class AttendanceService extends ServiceBase {
 
 
         List<String> errors = new ArrayList<String>();
-
+            System.out.println("########## _break_start1: " + av.getAttendance_break_start());
 
             LocalDateTime ldt = LocalDateTime.now();
             av.setUpdatedAt(ldt);
+            System.out.println("########## _break_start2: " + av.getAttendance_break_start());
             updateInternal(av);
 
 
@@ -174,6 +175,8 @@ public class AttendanceService extends ServiceBase {
 
         System.out.println("########## model変換後atWork: " + AttendanceConverter.toModel(av).getAttendance_at_work());
         System.out.println("########## atWork: " + av.getAttendance_at_work());
+        System.out.println("########## _break_start: " + av.getAttendance_break_start());
+
 
         em.persist(AttendanceConverter.toModel(av));
 
@@ -192,7 +195,9 @@ public class AttendanceService extends ServiceBase {
     private void updateInternal(AttendanceView av) {
 
         em.getTransaction().begin();
+        System.out.println("########## _break_start2.5: " + av.getAttendance_break_start());
         Attendance a = findOneInternal(av.getId());
+        System.out.println("########## _break_start3: " + av.getAttendance_break_start());
         AttendanceConverter.copyViewToModel(a, av);
         em.getTransaction().commit();
 

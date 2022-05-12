@@ -39,53 +39,16 @@ public class AttendanceAction extends ActionBase {
 
 
 
-    public void update() throws ServletException, IOException {
-
-        //CSRF対策 tokenのチェック
-        if (checkToken()) {
-
-            //idを条件に勤怠データを取得する
-            AttendanceView av = service.findOne(toNumber(getRequestParam(AttributeConst.ATT_ID)));
-
-            //入力された勤怠内容を設定する
-            av.setAttendanceDate(toLocalDate(getRequestParam(AttributeConst.ATT_DATE)));
-
-            //勤怠データの更新をする
-            List<String> errors = service.update(av);
-
-          if (errors != null) {
-                //セッションに更新完了のフラッシュメッセージを設定
-                putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
-                //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_ATT, ForwardConst.CMD_INDEX);
-
-              }
-            }
-        }
-
-
-
-
-
     public void atWork() throws ServletException, IOException {
 
         //CSRF対策 tokenのチェック
-        if (checkToken()) {
-            //勤怠の日付が入力されていなければ、今日の日付を設定
-            LocalDate day = null;
-            if (getRequestParam(AttributeConst.ATT_DATE) == null || getRequestParam(AttributeConst.ATT_DATE).equals("")) {
-                day = LocalDate.now();
-            } else {
-                day = LocalDate.parse(getRequestParam(AttributeConst.ATT_DATE));
-            }
+
 
             //セッションからログイン中の従業員情報を取得
             EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
-
+            LocalDate day = LocalDate.now();
             LocalDateTime at_work = LocalDateTime.now();
-            LocalDateTime break_start = null;
-            LocalDateTime end_of_break = null;
-            LocalDateTime leaving_work = null;
+
 
             //パラメータの値をもとに勤怠情報のインスタンスを作成する
             AttendanceView av = new AttendanceView(
@@ -93,11 +56,14 @@ public class AttendanceAction extends ActionBase {
                     ev, //ログインしている従業員を、勤怠作成者として登録する
                     day,
                     at_work,
-                    break_start,
-                    end_of_break,
-                    leaving_work,
+                    null,
+                    null,
+                    null,
                     null,
                     null);
+
+            System.out.println("########## atWork: " + av.getAttendance_at_work());
+
 
             List<String> errors = service.create(av);
 
@@ -111,16 +77,50 @@ public class AttendanceAction extends ActionBase {
 
             }
 
-        }
-
         System.out.println("＊＊＊＊＊＊＊＊＊＊＝＝＝＝＝");
     }
 
 
 
+
+
     public void breakStart() throws ServletException, IOException {
 
+        EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+        LocalDate day = LocalDate.now();
+        LocalDateTime break_start = LocalDateTime.now();
+
+        //パラメータの値をもとに勤怠情報のインスタンスを作成する
+        AttendanceView av = new AttendanceView(
+                null,
+                ev, //ログインしている従業員を、勤怠作成者として登録する
+                day,
+                null,
+                break_start,
+                null,
+                null,
+                null,
+                null);
+
+            //日報データを更新する
+            List<String> errors = service.update(av);
+
+            if (errors != null) {
+                //更新中にエラーが発生した場合
+
+
+                //セッションに更新完了のフラッシュメッセージを設定
+                putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+                //一覧画面にリダイレクト
+                redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+
+            }
+
     }
+
+
+
+
 
 
     public void endOfBreak() throws ServletException, IOException {

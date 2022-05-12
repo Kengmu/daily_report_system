@@ -3,11 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="constants.ForwardConst" %>
 
-<c:set var="actTop" value="${ForwardConst.ACT_TOP.getValue()}" />
 <c:set var="actAtt" value="${ForwardConst.ACT_ATT.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
 <c:set var="commNew" value="${ForwardConst.CMD_NEW.getValue()}" />
+
 
 
 
@@ -22,6 +22,7 @@
         <h2>勤怠　一覧</h2>
                 <li><a href="<c:url value='?action=${actAtt}&command=${commNew}' />">勤怠へ進む</a></li>
 
+
          <table id="attendance_list">
             <tbody>
                 <tr>
@@ -30,7 +31,7 @@
                     <th class="attendance_action">操作</th>
                 </tr>
                 <c:forEach var="attendance" items="${attendances}" varStatus="status">
-                    <fmt:parseDate value="${attendance.attendanceDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
+                    <fmt:parseDate value="${attendance.attendanceDate}" pattern="yyyy-MM-dd" var="attendanceDay" type="date" />
 
                     <tr class="row${status.count % 2}">
                         <td class="attendance_name"><c:out value="${attendance.employee.name}" /></td>
@@ -40,8 +41,6 @@
                 </c:forEach>
             </tbody>
         </table>
-
-
 
 
 

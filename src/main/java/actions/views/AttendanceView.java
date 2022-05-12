@@ -40,6 +40,7 @@ public class AttendanceView {
      */
     private LocalDateTime attendance_at_work;
 
+
     /**
      * 休憩開始
      */
@@ -55,7 +56,6 @@ public class AttendanceView {
      * 退勤
      */
     private LocalDateTime attendance_leaving_work;
-
 
     /**
      * 登録日時

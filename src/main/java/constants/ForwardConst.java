@@ -9,6 +9,7 @@ public enum ForwardConst {
     //action
     ACT("action"),
     ACT_TOP("Top"),
+    ACT_TOP2("Top2"),
     ACT_EMP("Employee"),
     ACT_REP("Report"),
     ACT_ATT("Attendance"),
