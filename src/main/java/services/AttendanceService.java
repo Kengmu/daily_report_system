@@ -169,19 +169,12 @@ public class AttendanceService extends ServiceBase {
      */
     private void createInternal(AttendanceView av) {
 
-        System.out.println("＊＊＊＊＊＊＊＊＊＊------------");
 
         em.getTransaction().begin();
-
         System.out.println("########## model変換後atWork: " + AttendanceConverter.toModel(av).getAttendance_at_work());
         System.out.println("########## atWork: " + av.getAttendance_at_work());
-        System.out.println("########## _break_start: " + av.getAttendance_break_start());
-
-
         em.persist(AttendanceConverter.toModel(av));
-
         System.out.println("＊＊＊＊＊＊＊＊＊＊勤怠データを1件登録");
-
         em.getTransaction().commit();
 
     }
@@ -197,8 +190,10 @@ public class AttendanceService extends ServiceBase {
         em.getTransaction().begin();
         System.out.println("########## _break_start2.5: " + av.getAttendance_break_start());
         Attendance a = findOneInternal(av.getId());
+        System.out.println("########## _IDは: " + av.getId());
         System.out.println("########## _break_start3: " + av.getAttendance_break_start());
         AttendanceConverter.copyViewToModel(a, av);
+        System.out.println("########## _break_start3.5: " + av.getAttendance_break_start());
         em.getTransaction().commit();
 
     }

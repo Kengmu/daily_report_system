@@ -205,6 +205,7 @@ public class ReportService extends ServiceBase {
 
         em.getTransaction().begin();
         Report r = findOneInternal(rv.getId());
+        System.out.println("########## _IDは: " + rv.getId());
         ReportConverter.copyViewToModel(r, rv);
         em.getTransaction().commit();
 

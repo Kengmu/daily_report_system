@@ -5,10 +5,9 @@
 
 <c:set var="actAtt" value="${ForwardConst.ACT_ATT.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
-<c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
+<c:set var="commEdit" value="${ForwardConst.CMD_EDIT.getValue()}" />
 <c:set var="commNew" value="${ForwardConst.CMD_NEW.getValue()}" />
-
-
+<c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
 
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
@@ -20,7 +19,7 @@
         </c:if>
 
         <h2>勤怠　一覧</h2>
-                <li><a href="<c:url value='?action=${actAtt}&command=${commNew}' />">勤怠へ進む</a></li>
+                <li><a href="<c:url value='?action=${actAtt}&command=${commNew}' />">出勤へ進む</a></li>
 
 
          <table id="attendance_list">

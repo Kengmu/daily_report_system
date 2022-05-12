@@ -49,6 +49,7 @@ public enum ForwardConst {
     FW_REP_EDIT("reports/edit"),
     FW_ATT_NEW("attendances/new"),
     FW_ATT_EDIT("attendances/edit"),
+    FW_ATT_SHOW("attendances/show"),
     FW_ATT_INDEX("attendances/index");
 
     private final String text;
