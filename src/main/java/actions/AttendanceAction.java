@@ -87,10 +87,6 @@ public class AttendanceAction extends ActionBase {
 
     public void breakStart() throws ServletException, IOException {
 
-        //CSRF対策 tokenのチェック
-
-
-
 
         //セッションからログイン中の従業員情報を取得
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
@@ -98,10 +94,9 @@ public class AttendanceAction extends ActionBase {
         LocalDateTime break_start = LocalDateTime.now();
 
 
-
         //パラメータの値をもとに勤怠情報のインスタンスを作成する
         AttendanceView av = new AttendanceView(
-                toNumber(getSessionScope(AttributeConst.ATT_ID)),
+                getRequestParameter(AttributeConst.ATT_ID),
                 ev, //ログインしている従業員を、勤怠作成者として登録する
                 day,
                 null,
@@ -111,6 +106,7 @@ public class AttendanceAction extends ActionBase {
                 null,
                 null);
 
+        System.out.println("########## _IDはははは: " + av.getId());
         System.out.println("########## atWork: " + av.getAttendance_at_work());
 
 
@@ -137,6 +133,16 @@ public class AttendanceAction extends ActionBase {
 
 
 
+
+
+
+
+
+
+    private Integer getRequestParameter(AttributeConst attId) {
+        // TODO 自動生成されたメソッド・スタブ
+        return null;
+    }
 
 
 

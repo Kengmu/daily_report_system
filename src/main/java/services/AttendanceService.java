@@ -189,6 +189,7 @@ public class AttendanceService extends ServiceBase {
 
         em.getTransaction().begin();
         System.out.println("########## _break_start2.5: " + av.getAttendance_break_start());
+        System.out.println("########## _IDはは: " + av.getId());
         Attendance a = findOneInternal(av.getId());
         System.out.println("########## _IDは: " + av.getId());
         System.out.println("########## _break_start3: " + av.getAttendance_break_start());
