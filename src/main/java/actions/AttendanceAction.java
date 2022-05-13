@@ -51,6 +51,7 @@ public class AttendanceAction extends ActionBase {
             LocalDateTime at_work = LocalDateTime.now();
 
 
+
             //パラメータの値をもとに勤怠情報のインスタンスを作成する
             AttendanceView av = new AttendanceView(
                     null,
@@ -93,10 +94,12 @@ public class AttendanceAction extends ActionBase {
         LocalDate day = LocalDate.now();
         LocalDateTime break_start = LocalDateTime.now();
 
+        Integer id = toNumber(getSessionScope(AttributeConst.ATT_ID));
+
 
         //パラメータの値をもとに勤怠情報のインスタンスを作成する
         AttendanceView av = new AttendanceView(
-                getRequestParameter(AttributeConst.ATT_ID),
+                id,
                 ev, //ログインしている従業員を、勤怠作成者として登録する
                 day,
                 null,
@@ -125,24 +128,6 @@ public class AttendanceAction extends ActionBase {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private Integer getRequestParameter(AttributeConst attId) {
-        // TODO 自動生成されたメソッド・スタブ
-        return null;
-    }
 
 
 
