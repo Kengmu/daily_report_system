@@ -75,7 +75,7 @@ public class Attendance {
     /**
      * 出勤情報
      */
-    @Column(name = JpaConst.ATT_COL_AT_WORK, nullable = false)
+    @Column(name = JpaConst.ATT_COL_AT_WORK, nullable = true)
     private LocalDateTime attendance_at_work;
 
     /**
@@ -109,6 +109,7 @@ public class Attendance {
      */
     @Column(name = JpaConst.ATT_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
+
 
 
 }

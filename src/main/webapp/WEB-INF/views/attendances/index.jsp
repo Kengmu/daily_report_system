@@ -27,7 +27,7 @@
                 <tr>
                     <th class="attendance_name">氏名</th>
                     <th class="attendance_date">日付</th>
-                    <th class="attendance_action">操作</th>
+                    <th class="attendance_action">出勤以外、詳細確認</th>
                 </tr>
                 <c:forEach var="attendance" items="${attendances}" varStatus="status">
                     <fmt:parseDate value="${attendance.attendanceDate}" pattern="yyyy-MM-dd" var="attendanceDay" type="date" />

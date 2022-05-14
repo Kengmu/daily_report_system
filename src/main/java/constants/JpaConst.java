@@ -54,7 +54,6 @@ public interface JpaConst {
     String ATT_COL_CREATED_AT = "created_at"; //登録日時
     String ATT_COL_UPDATED_AT = "updated_at"; //更新日時
 
-
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
@@ -65,6 +64,10 @@ public interface JpaConst {
     String JPQL_PARM_CODE = "code"; //社員番号
     String JPQL_PARM_PASSWORD = "password"; //パスワード
     String JPQL_PARM_EMPLOYEE = "employee"; //従業員
+    String JPQL_PARM_EMPLOYEE_ID = "employee_id"; //従業員id
+    String JPQL_PARM_ATTENDANCE_DATE = "attendance_date"; //出勤日
+
+
 
     //NamedQueryの nameとquery
     //全ての従業員をidの降順に取得する
@@ -107,6 +110,12 @@ public interface JpaConst {
     //指定した従業員が登録した勤怠の件数を取得する
     String Q_ATT_COUNT_ALL_MINE = ENTITY_ATT + ".countAllMine";
     String Q_ATT_COUNT_ALL_MINE_DEF = "SELECT COUNT(a) FROM Attendance AS a WHERE a.employee = :" + JPQL_PARM_EMPLOYEE;
+
+    //指定した勤怠idを取得する
+    String Q_ATT_COL_ATT_DATE = "SELECT a FROM Attendance AS a WHERE a.id = AND a.employee_id = :" + JPQL_PARM_EMPLOYEE_ID +" AND a.attendance_date = :" + JPQL_PARM_ATTENDANCE_DATE;
+
+
+
 
 
 

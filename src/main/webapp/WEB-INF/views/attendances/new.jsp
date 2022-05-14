@@ -32,6 +32,7 @@
 
 
 
+
         <p><a href="<c:url value='?action=${action}&command=${commIdx}' />">戻る</a></p>
 
 

@@ -91,24 +91,16 @@ public class AttendanceAction extends ActionBase {
 
         //セッションからログイン中の従業員情報を取得
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
-        LocalDate day = LocalDate.now();
-        LocalDateTime break_start = LocalDateTime.now();
 
-        Integer id = toNumber(getSessionScope(AttributeConst.ATT_ID));
+        AttendanceView av = service.findOne(toNumber(getRequestParam(AttributeConst.ATT_ID)));
+
+        av.setAttendance_break_start(toLocalDateTime(getRequestParam(AttributeConst.ATT_ATTENDANCE_BREAK_START)));
 
 
-        //パラメータの値をもとに勤怠情報のインスタンスを作成する
-        AttendanceView av = new AttendanceView(
-                id,
-                ev, //ログインしている従業員を、勤怠作成者として登録する
-                day,
-                null,
-                break_start,
-                null,
-                null,
-                null,
-                null);
 
+
+
+        System.out.println("########## _break_start0: " + av.getAttendance_break_start());
         System.out.println("########## _IDはははは: " + av.getId());
         System.out.println("########## atWork: " + av.getAttendance_at_work());
 
@@ -118,7 +110,7 @@ public class AttendanceAction extends ActionBase {
 
         if (errors != null) {
       //セッションに登録完了のフラッシュメッセージを設定
-        putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
+        putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
         //一覧画面にリダイレクト
         redirect(ForwardConst.ACT_ATT, ForwardConst.CMD_INDEX);
         }
@@ -129,6 +121,11 @@ public class AttendanceAction extends ActionBase {
     }
 
 
+    private LocalDateTime toLocalDateTime(String requestParam) {
+        // TODO 自動生成されたメソッド・スタブ
+        return null;
+    }
+
 
 
 
@@ -136,12 +133,69 @@ public class AttendanceAction extends ActionBase {
 
     public void endOfBreak() throws ServletException, IOException {
 
+      //セッションからログイン中の従業員情報を取得
+        EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+
+        AttendanceView av1 = service.findOne(toNumber(getRequestParam(AttributeConst.ATT_ID)));
+
+        av1.setAttendance_end_of_break(toLocalDateTime(getRequestParam(AttributeConst.ATT_ATTENDANCE_END_OF_BREAK)));
+
+
+
+
+
+        System.out.println("########## _break_start0: " + av1.getAttendance_break_start());
+        System.out.println("########## _IDはははは: " + av1.getId());
+        System.out.println("########## atWork: " + av1.getAttendance_at_work());
+
+
+        List<String> errors = service.update1(av1);
+
+
+        if (errors != null) {
+      //セッションに登録完了のフラッシュメッセージを設定
+        putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+        //一覧画面にリダイレクト
+        redirect(ForwardConst.ACT_ATT, ForwardConst.CMD_INDEX);
+        }
+
+    System.out.println("＊＊＊＊＊＊＊＊＊＊＝＝＝＝＝");
+
     }
+
+
 
 
     public void leavingWork() throws ServletException, IOException {
 
+      //セッションからログイン中の従業員情報を取得
+        EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+
+        AttendanceView av2 = service.findOne(toNumber(getRequestParam(AttributeConst.ATT_ID)));
+
+        av2.setAttendance_leaving_work(toLocalDateTime(getRequestParam(AttributeConst.ATT_ATTENDANCE_LEAVING_WORK)));
+
+
+        System.out.println("########## _break_start0: " + av2.getAttendance_break_start());
+        System.out.println("########## _IDはははは: " + av2.getId());
+        System.out.println("########## atWork: " + av2.getAttendance_at_work());
+
+
+        List<String> errors = service.update2(av2);
+
+
+        if (errors != null) {
+      //セッションに登録完了のフラッシュメッセージを設定
+        putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+        //一覧画面にリダイレクト
+        redirect(ForwardConst.ACT_ATT, ForwardConst.CMD_INDEX);
+        }
+
+    System.out.println("＊＊＊＊＊＊＊＊＊＊＝＝＝＝＝");
+
     }
+
+
 
 
 
@@ -154,6 +208,9 @@ public class AttendanceAction extends ActionBase {
             //idを条件に従業員データを取得する
             AttendanceView av = service.findOne(toNumber(getRequestParam(AttributeConst.ATT_ID)));
 
+            System.out.println("########## edit_IDは: " + av.getId());
+
+
           //セッションからログイン中の従業員情報を取得
             EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
@@ -165,6 +222,15 @@ public class AttendanceAction extends ActionBase {
 
             putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
             putRequestScope(AttributeConst.EMPLOYEE, av); //取得した従業員情報
+
+
+            //勤怠情報の空インスタンスに、日報の日付＝今日の日付を設定する
+            av.setAttendanceDate(LocalDate.now());
+
+            System.out.println("##########?????????！！！！！ : " + av.getAttendanceDate());
+            putRequestScope(AttributeConst.ATTENDANCE, av); //日付のみ設定済みの日報インスタンス
+
+
 
             //編集画面を表示する
             forward(ForwardConst.FW_ATT_EDIT);
@@ -182,6 +248,9 @@ public class AttendanceAction extends ActionBase {
 
         //idを条件に日報データを取得する
         AttendanceView av = service.findOne(toNumber(getRequestParam(AttributeConst.ATT_ID)));
+
+        System.out.println("########## show_IDは: " + av.getId());
+
 
         //セッションからログイン中の従業員情報を取得
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);

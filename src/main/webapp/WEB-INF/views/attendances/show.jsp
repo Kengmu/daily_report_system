@@ -33,22 +33,22 @@
                 </tr>
                 <tr>
                     <th>出勤時間</th>
-                    <fmt:parseDate value="${attendance.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="atWorkDay" type="date" />
+                    <fmt:parseDate value="${attendance.attendance_at_work}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="atWorkDay" type="date" />
                     <td><fmt:formatDate value="${atWorkDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
                 <tr>
                     <th>休憩開始時間</th>
-                    <fmt:parseDate value="${attendance.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="breakStartDay" type="date" />
+                    <fmt:parseDate value="${attendance.attendance_break_start}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="breakStartDay" type="date" />
                     <td><fmt:formatDate value="${breakStartDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
                 <tr>
                     <th>休憩終了時間</th>
-                    <fmt:parseDate value="${attendance.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="endOfBreakDay" type="date" />
+                    <fmt:parseDate value="${attendance.attendance_end_of_break}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="endOfBreakDay" type="date" />
                     <td><fmt:formatDate value="${endOfBreakDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
                 <tr>
                     <th>退勤時間</th>
-                    <fmt:parseDate value="${attendance.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="leavingWorkDay" type="date" />
+                    <fmt:parseDate value="${attendance.attendance_leaving_work}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="leavingWorkDay" type="date" />
                     <td><fmt:formatDate value="${leavingWorkDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
             </tbody>

@@ -130,15 +130,27 @@ public class AttendanceService extends ServiceBase {
 
 
 
+
+
+
+
+
     public List<String> update(AttendanceView av) {
 
 
         List<String> errors = new ArrayList<String>();
+
             System.out.println("########## _break_start1: " + av.getAttendance_break_start());
 
+
             LocalDateTime ldt = LocalDateTime.now();
+
             av.setUpdatedAt(ldt);
+            av.setAttendance_break_start(ldt);
+
             System.out.println("########## _break_start2: " + av.getAttendance_break_start());
+
+
             updateInternal(av);
 
 
@@ -146,6 +158,64 @@ public class AttendanceService extends ServiceBase {
         //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
         return errors;
     }
+
+
+
+    public List<String> update1(AttendanceView av1) {
+
+
+        List<String> errors = new ArrayList<String>();
+
+            System.out.println("########## _break_start1: " + av1.getAttendance_break_start());
+
+
+            LocalDateTime ldt = LocalDateTime.now();
+
+            av1.setUpdatedAt(ldt);
+            av1.setAttendance_end_of_break(ldt);
+
+            System.out.println("########## _break_start2: " + av1.getAttendance_break_start());
+
+
+            updateInternal1(av1);
+
+
+
+        //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
+        return errors;
+    }
+
+
+
+
+    public List<String> update2(AttendanceView av2) {
+
+
+        List<String> errors = new ArrayList<String>();
+
+            System.out.println("########## _break_start1: " + av2.getAttendance_break_start());
+
+            LocalDateTime ldt = LocalDateTime.now();
+
+            av2.setUpdatedAt(ldt);
+            av2.setAttendance_leaving_work(ldt);
+
+            System.out.println("########## _break_start2: " + av2.getAttendance_break_start());
+
+
+            updateInternal2(av2);
+
+
+
+        //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
+        return errors;
+    }
+
+
+
+
+
+
 
 
 
@@ -181,23 +251,85 @@ public class AttendanceService extends ServiceBase {
 
 
 
+
+
+
+
+
+
+
+
     /**
      * 勤怠データを更新する
      * @param av 勤怠データ
+     * @param break_start
      */
     private void updateInternal(AttendanceView av) {
 
         em.getTransaction().begin();
         System.out.println("########## _break_start2.5: " + av.getAttendance_break_start());
+
+
         System.out.println("########## _IDはは: " + av.getId());
         Attendance a = findOneInternal(av.getId());
+
         System.out.println("########## _IDは: " + av.getId());
         System.out.println("########## _break_start3: " + av.getAttendance_break_start());
+
+
         AttendanceConverter.copyViewToModel(a, av);
         System.out.println("########## _break_start3.5: " + av.getAttendance_break_start());
+
+
         em.getTransaction().commit();
 
     }
+
+
+    private void updateInternal1(AttendanceView av1) {
+
+        em.getTransaction().begin();
+        System.out.println("########## _break_start2.5: " + av1.getAttendance_break_start());
+
+
+        System.out.println("########## _IDはは: " + av1.getId());
+        Attendance a = findOneInternal(av1.getId());
+
+        System.out.println("########## _IDは: " + av1.getId());
+        System.out.println("########## _break_start3: " + av1.getAttendance_break_start());
+
+
+        AttendanceConverter.copyViewToModel1(a, av1);
+        System.out.println("########## _break_start3.5: " + av1.getAttendance_break_start());
+
+
+        em.getTransaction().commit();
+
+    }
+
+
+    private void updateInternal2(AttendanceView av2) {
+
+        em.getTransaction().begin();
+        System.out.println("########## _break_start2.5: " + av2.getAttendance_break_start());
+
+
+        System.out.println("########## _IDはは: " + av2.getId());
+        Attendance a = findOneInternal(av2.getId());
+
+        System.out.println("########## _IDは: " + av2.getId());
+        System.out.println("########## _break_start3: " + av2.getAttendance_break_start());
+
+
+        AttendanceConverter.copyViewToModel2(a, av2);
+        System.out.println("########## _break_start3.5: " + av2.getAttendance_break_start());
+
+
+        em.getTransaction().commit();
+
+    }
+
+
 
 
 

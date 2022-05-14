@@ -31,7 +31,6 @@ public class AttendanceConverter {
                 av.getAttendance_leaving_work(),
                 av.getCreatedAt(),
                 av.getUpdatedAt());
-
     }
 
 
@@ -61,7 +60,6 @@ public class AttendanceConverter {
 
 
     }
-
 
 
     /**
@@ -97,7 +95,37 @@ public class AttendanceConverter {
         a.setAttendance_leaving_work(av.getAttendance_leaving_work());
         a.setCreatedAt(av.getCreatedAt());
         a.setUpdatedAt(av.getUpdatedAt());
+    }
+
+
+    public static void copyViewToModel1(Attendance a, AttendanceView av1) {
+        a.setId(av1.getId());
+        a.setEmployee(EmployeeConverter.toModel(av1.getEmployee()));
+        a.setAttendanceDate(av1.getAttendanceDate());
+        a.setAttendance_at_work(av1.getAttendance_at_work());
+        a.setAttendance_break_start(av1.getAttendance_break_start());
+        a.setAttendance_end_of_break(av1.getAttendance_end_of_break());
+        a.setAttendance_leaving_work(av1.getAttendance_leaving_work());
+        a.setCreatedAt(av1.getCreatedAt());
+        a.setUpdatedAt(av1.getUpdatedAt());
 
     }
+
+
+    public static void copyViewToModel2(Attendance a, AttendanceView av2) {
+        a.setId(av2.getId());
+        a.setEmployee(EmployeeConverter.toModel(av2.getEmployee()));
+        a.setAttendanceDate(av2.getAttendanceDate());
+        a.setAttendance_at_work(av2.getAttendance_at_work());
+        a.setAttendance_break_start(av2.getAttendance_break_start());
+        a.setAttendance_end_of_break(av2.getAttendance_end_of_break());
+        a.setAttendance_leaving_work(av2.getAttendance_leaving_work());
+        a.setCreatedAt(av2.getCreatedAt());
+        a.setUpdatedAt(av2.getUpdatedAt());
+
+    }
+
+
+
 
 }
