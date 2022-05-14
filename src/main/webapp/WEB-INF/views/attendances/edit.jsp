@@ -5,6 +5,7 @@
 <%@ page import="constants.ForwardConst" %>
 
 <c:set var="action"  value="${ForwardConst.ACT_ATT.getValue()}" />
+<c:set var="commIdx"  value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commBre" value="${ForwardConst.CMD_BREAKSTART.getValue()}" />
 <c:set var="commEnd" value="${ForwardConst.CMD_ENDOFBREAK.getValue()}" />
 <c:set var="commLea" value="${ForwardConst.CMD_LEAVINGWORK.getValue()}" />

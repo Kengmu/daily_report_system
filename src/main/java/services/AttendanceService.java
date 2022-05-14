@@ -289,20 +289,8 @@ public class AttendanceService extends ServiceBase {
     private void updateInternal1(AttendanceView av1) {
 
         em.getTransaction().begin();
-        System.out.println("########## _break_start2.5: " + av1.getAttendance_break_start());
-
-
-        System.out.println("########## _IDはは: " + av1.getId());
         Attendance a = findOneInternal(av1.getId());
-
-        System.out.println("########## _IDは: " + av1.getId());
-        System.out.println("########## _break_start3: " + av1.getAttendance_break_start());
-
-
         AttendanceConverter.copyViewToModel1(a, av1);
-        System.out.println("########## _break_start3.5: " + av1.getAttendance_break_start());
-
-
         em.getTransaction().commit();
 
     }
@@ -311,20 +299,8 @@ public class AttendanceService extends ServiceBase {
     private void updateInternal2(AttendanceView av2) {
 
         em.getTransaction().begin();
-        System.out.println("########## _break_start2.5: " + av2.getAttendance_break_start());
-
-
-        System.out.println("########## _IDはは: " + av2.getId());
         Attendance a = findOneInternal(av2.getId());
-
-        System.out.println("########## _IDは: " + av2.getId());
-        System.out.println("########## _break_start3: " + av2.getAttendance_break_start());
-
-
         AttendanceConverter.copyViewToModel2(a, av2);
-        System.out.println("########## _break_start3.5: " + av2.getAttendance_break_start());
-
-
         em.getTransaction().commit();
 
     }
