@@ -1,7 +1,6 @@
 package services;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import actions.views.AttendanceConverter;
@@ -10,6 +9,7 @@ import actions.views.EmployeeConverter;
 import actions.views.EmployeeView;
 import constants.JpaConst;
 import models.Attendance;
+import models.validators.AttendanceValidator;
 
 
 
@@ -113,13 +113,18 @@ public class AttendanceService extends ServiceBase {
     public List<String> create(AttendanceView av) {
 
 
-        List<String> errors = new ArrayList<String>();
+
+        List<String> errors = AttendanceValidator.validate(av);
+
+        if (errors.size() == 0) {
 
             LocalDateTime ldt = LocalDateTime.now();
             av.setCreatedAt(ldt);
             av.setUpdatedAt(ldt);
             createInternal(av);
 
+
+        }
 
 
         //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
@@ -138,13 +143,14 @@ public class AttendanceService extends ServiceBase {
     public List<String> update(AttendanceView av) {
 
 
-        List<String> errors = new ArrayList<String>();
+        List<String> errors = AttendanceValidator.validate(av);
 
+        if (errors.size() == 0) {
             LocalDateTime ldt = LocalDateTime.now();
             av.setUpdatedAt(ldt);
             av.setAttendance_break_start(ldt);
             updateInternal(av);
-
+        }
 
 
         //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
@@ -156,14 +162,16 @@ public class AttendanceService extends ServiceBase {
     public List<String> update1(AttendanceView av1) {
 
 
-        List<String> errors = new ArrayList<String>();
+        List<String> errors = AttendanceValidator.validate1(av1);
 
+        if (errors.size() == 0) {
             LocalDateTime ldt = LocalDateTime.now();
             av1.setUpdatedAt(ldt);
             av1.setAttendance_end_of_break(ldt);
             updateInternal1(av1);
 
 
+        }
 
         //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
         return errors;
@@ -175,12 +183,15 @@ public class AttendanceService extends ServiceBase {
     public List<String> update2(AttendanceView av2) {
 
 
-        List<String> errors = new ArrayList<String>();
+        List<String> errors = AttendanceValidator.validate2(av2);
 
+        if (errors.size() == 0) {
             LocalDateTime ldt = LocalDateTime.now();
             av2.setUpdatedAt(ldt);
             av2.setAttendance_leaving_work(ldt);
             updateInternal2(av2);
+
+        }
 
         //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
         return errors;

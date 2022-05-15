@@ -1,5 +1,7 @@
 package constants;
 
+import java.time.LocalDateTime;
+
 /**
  * 画面の項目値等を定義するEnumクラス
  *
@@ -65,17 +67,26 @@ public enum AttributeConst {
 
     private final String text;
     private final Integer i;
+    private final LocalDateTime l;
 
 
 
     private AttributeConst(final String text) {
         this.text = text;
         this.i = null;
+        this.l = null;
     }
 
     private AttributeConst(final Integer i) {
         this.text = null;
+        this.l = null;
         this.i = i;
+    }
+
+    private AttributeConst(final LocalDateTime l) {
+        this.l = l;
+        this.text = null;
+        this.i = null;
     }
 
 
@@ -87,5 +98,9 @@ public enum AttributeConst {
     public Integer getIntegerValue() {
         return this.i;
     }
+    public LocalDateTime getLocalDateTimeValue() {
+        return this.l;
+    }
+
 
 }

@@ -70,14 +70,25 @@ public class AttendanceAction extends ActionBase {
             List<String> errors = service.create(av);
 
 
-            if (errors != null) {
+            if ((errors.size() > 0)) {
 
-          //セッションに登録完了のフラッシュメッセージを設定
-            putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
-            //一覧画面にリダイレクト
-            redirect(ForwardConst.ACT_ATT, ForwardConst.CMD_INDEX);
+                putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+                putRequestScope(AttributeConst.ATTENDANCE, av); //入力された日報情報
+                putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
+
+                //編集画面を再表示
+                forward(ForwardConst.FW_REP_EDIT);
+
+            } else {
+
+              //セッションに登録完了のフラッシュメッセージを設定
+                putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
+                //一覧画面にリダイレクト
+                redirect(ForwardConst.ACT_ATT, ForwardConst.CMD_INDEX);
 
             }
+
+
 
         System.out.println("＊＊＊＊＊＊＊＊＊＊＝＝＝＝＝");
     }
@@ -89,15 +100,13 @@ public class AttendanceAction extends ActionBase {
     public void breakStart() throws ServletException, IOException {
 
 
+
         //セッションからログイン中の従業員情報を取得
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
         AttendanceView av = service.findOne(toNumber(getRequestParam(AttributeConst.ATT_ID)));
 
         av.setAttendance_break_start(toLocalDateTime(getRequestParam(AttributeConst.ATT_ATTENDANCE_BREAK_START)));
-
-
-
 
 
         System.out.println("########## _break_start0: " + av.getAttendance_break_start());
@@ -108,7 +117,18 @@ public class AttendanceAction extends ActionBase {
         List<String> errors = service.update(av);
 
 
-        if (errors != null) {
+        if ((errors.size() > 0)) {
+
+            putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+            putRequestScope(AttributeConst.ATTENDANCE, av); //入力された日報情報
+            putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
+
+            //編集画面を再表示
+            forward(ForwardConst.FW_REP_EDIT);
+
+        } else {
+
+
       //セッションに登録完了のフラッシュメッセージを設定
         putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
         //一覧画面にリダイレクト
@@ -118,13 +138,10 @@ public class AttendanceAction extends ActionBase {
     System.out.println("＊＊＊＊＊＊＊＊＊＊＝＝＝＝＝");
 
 
+
     }
 
 
-    private LocalDateTime toLocalDateTime(String requestParam) {
-        // TODO 自動生成されたメソッド・スタブ
-        return null;
-    }
 
 
 
@@ -132,6 +149,7 @@ public class AttendanceAction extends ActionBase {
 
 
     public void endOfBreak() throws ServletException, IOException {
+
 
       //セッションからログイン中の従業員情報を取得
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
@@ -150,12 +168,25 @@ public class AttendanceAction extends ActionBase {
         List<String> errors = service.update1(av1);
 
 
-        if (errors != null) {
+        if ((errors.size() > 0)) {
+
+
+            putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+            putRequestScope(AttributeConst.ATTENDANCE, av1); //入力された日報情報
+            putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
+
+            //編集画面を再表示
+            forward(ForwardConst.FW_REP_EDIT);
+
+        } else {
+
+
       //セッションに登録完了のフラッシュメッセージを設定
         putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
         //一覧画面にリダイレクト
         redirect(ForwardConst.ACT_ATT, ForwardConst.CMD_INDEX);
         }
+
 
     System.out.println("＊＊＊＊＊＊＊＊＊＊＝＝＝＝＝");
 
@@ -165,6 +196,8 @@ public class AttendanceAction extends ActionBase {
 
 
     public void leavingWork() throws ServletException, IOException {
+
+
 
       //セッションからログイン中の従業員情報を取得
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
@@ -182,18 +215,40 @@ public class AttendanceAction extends ActionBase {
         List<String> errors = service.update2(av2);
 
 
-        if (errors != null) {
+        if ((errors.size() > 0)) {
+
+
+
+            putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+            putRequestScope(AttributeConst.ATTENDANCE, av2); //入力された日報情報
+            putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
+
+            //編集画面を再表示
+            forward(ForwardConst.FW_REP_EDIT);
+
+        } else {
+
+
       //セッションに登録完了のフラッシュメッセージを設定
         putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
         //一覧画面にリダイレクト
         redirect(ForwardConst.ACT_ATT, ForwardConst.CMD_INDEX);
         }
 
+
+
+
     System.out.println("＊＊＊＊＊＊＊＊＊＊＝＝＝＝＝");
 
     }
 
 
+
+
+    private LocalDateTime toLocalDateTime(String requestParam) {
+        // TODO 自動生成されたメソッド・スタブ
+        return null;
+    }
 
 
 

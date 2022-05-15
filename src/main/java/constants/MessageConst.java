@@ -1,5 +1,7 @@
 package constants;
 
+import java.time.LocalDateTime;
+
 /**
  * 各出力メッセージを定義するEnumクラス
  *
@@ -23,20 +25,32 @@ public enum MessageConst {
     E_EMP_CODE_EXIST("入力された社員番号の情報は既に存在しています。"),
     E_NOTITLE("タイトルを入力してください。"),
     E_NOCONTENT("内容を入力してください。"),
-    E_WORNG("エラー");
+    E_WORNG("エラー"), ;
+
 
 
     /**
      * 文字列
      */
+
     private final String text;
+    private final LocalDateTime l;
+
 
     /**
      * コンストラクタ
      */
     private MessageConst(final String text) {
         this.text = text;
+        this.l = null;
     }
+
+    private MessageConst(final LocalDateTime l) {
+        this.text = null;
+        this.l = l;
+    }
+
+
 
     /**
      * 値(文字列)取得
@@ -44,4 +58,15 @@ public enum MessageConst {
     public String getMessage() {
         return this.text;
     }
+
+    public LocalDateTime getLocalDateTimeValue() {
+        return this.l;
+    }
+
 }
+
+
+
+
+
+

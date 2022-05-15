@@ -15,11 +15,6 @@
     <c:param name="content">
         <h2>勤怠</h2>
 
-<fmt:parseDate value="${attendance.attendanceDate}" pattern="yyyy-MM-dd" var="attendanceDay" type="date" />
-<label for="${AttributeConst.ATT_DATE.getValue()}">日付</label><br />
-<input type="date" name="${AttributeConst.ATT_DATE.getValue()}" value="<fmt:formatDate value='${attendanceDay}' pattern='yyyy-MM-dd' />" />
-<br /><br />
-<br /><br />
 
 
          <form method="POST" action="<c:url value='?action=${action}&command=${commBre}&id=${attendance.id}' />">
