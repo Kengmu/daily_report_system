@@ -69,7 +69,7 @@ public class Attendance {
     /**
      * いつの勤怠かを示す日付
      */
-    @Column(name = JpaConst.ATT_COL_ATT_DATE, nullable = false)
+    @Column(name = JpaConst.ATT_COL_ATT_DATE, nullable = false, unique = true)
     private LocalDate attendanceDate;
 
     /**

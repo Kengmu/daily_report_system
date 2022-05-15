@@ -108,13 +108,14 @@ public class AttendanceAction extends ActionBase {
 
         av.setAttendance_break_start(toLocalDateTime(getRequestParam(AttributeConst.ATT_ATTENDANCE_BREAK_START)));
 
+        LocalDateTime at_work = LocalDateTime.now();
+
 
         System.out.println("########## _break_start0: " + av.getAttendance_break_start());
         System.out.println("########## _IDはははは: " + av.getId());
-        System.out.println("########## atWork: " + av.getAttendance_at_work());
 
 
-        List<String> errors = service.update(av);
+        List<String> errors = service.update(av, at_work);
 
 
         if ((errors.size() > 0)) {
@@ -159,13 +160,15 @@ public class AttendanceAction extends ActionBase {
         av1.setAttendance_end_of_break(toLocalDateTime(getRequestParam(AttributeConst.ATT_ATTENDANCE_END_OF_BREAK)));
 
 
+        LocalDateTime leaving_work = LocalDateTime.now();
+        LocalDateTime break_start = LocalDateTime.now();
+
 
         System.out.println("########## _break_start0: " + av1.getAttendance_break_start());
         System.out.println("########## _IDはははは: " + av1.getId());
-        System.out.println("########## atWork: " + av1.getAttendance_at_work());
 
 
-        List<String> errors = service.update1(av1);
+        List<String> errors = service.update1(av1, break_start, leaving_work);
 
 
         if ((errors.size() > 0)) {
@@ -207,12 +210,19 @@ public class AttendanceAction extends ActionBase {
         av2.setAttendance_leaving_work(toLocalDateTime(getRequestParam(AttributeConst.ATT_ATTENDANCE_LEAVING_WORK)));
 
 
+        LocalDateTime at_work = LocalDateTime.now();
+        LocalDateTime break_start = LocalDateTime.now();
+        LocalDateTime end_of_break = LocalDateTime.now();
+
+
+
+
         System.out.println("########## _break_start0: " + av2.getAttendance_break_start());
         System.out.println("########## _IDはははは: " + av2.getId());
         System.out.println("########## atWork: " + av2.getAttendance_at_work());
 
 
-        List<String> errors = service.update2(av2);
+        List<String> errors = service.update2(av2, at_work, break_start, end_of_break);
 
 
         if ((errors.size() > 0)) {

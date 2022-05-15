@@ -20,6 +20,9 @@
         <h2>勤怠</h2>
 
 
+
+
+
         <form method="POST" action="<c:url value='?action=${action}&command=${commAtw}' />">
            <button type="submit" name="${AttributeConst.ATT_ATTENDANCE_AT_WORK.getValue()}" value="${attendance.attendance_at_work}">出勤</button><br />
            <br /><br />

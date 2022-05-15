@@ -114,7 +114,7 @@ public class AttendanceService extends ServiceBase {
 
 
 
-        List<String> errors = AttendanceValidator.validate(av);
+        List<String> errors = AttendanceValidator.validate(av, null);
 
         if (errors.size() == 0) {
 
@@ -140,10 +140,10 @@ public class AttendanceService extends ServiceBase {
 
 
 
-    public List<String> update(AttendanceView av) {
+    public List<String> update(AttendanceView av, LocalDateTime at_work) {
 
 
-        List<String> errors = AttendanceValidator.validate(av);
+        List<String> errors = AttendanceValidator.validate(av, at_work);
 
         if (errors.size() == 0) {
             LocalDateTime ldt = LocalDateTime.now();
@@ -159,10 +159,10 @@ public class AttendanceService extends ServiceBase {
 
 
 
-    public List<String> update1(AttendanceView av1) {
+    public List<String> update1(AttendanceView av1, LocalDateTime break_start, LocalDateTime leaving_work) {
 
 
-        List<String> errors = AttendanceValidator.validate1(av1);
+        List<String> errors = AttendanceValidator.validate1(av1, break_start, leaving_work);
 
         if (errors.size() == 0) {
             LocalDateTime ldt = LocalDateTime.now();
@@ -180,10 +180,10 @@ public class AttendanceService extends ServiceBase {
 
 
 
-    public List<String> update2(AttendanceView av2) {
+    public List<String> update2(AttendanceView av2, LocalDateTime at_work, LocalDateTime break_start, LocalDateTime end_of_break) {
 
 
-        List<String> errors = AttendanceValidator.validate2(av2);
+        List<String> errors = AttendanceValidator.validate2(av2, at_work, break_start, end_of_break);
 
         if (errors.size() == 0) {
             LocalDateTime ldt = LocalDateTime.now();
