@@ -44,7 +44,5 @@
 
 
 
-<p><a href="<c:url value='?action=${actTop}&command=${commIdx}' />">戻る</a></p>
-
     </c:param>
 </c:import>

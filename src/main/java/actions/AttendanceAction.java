@@ -142,8 +142,6 @@ public class AttendanceAction extends ActionBase {
 
 
 
-
-
         System.out.println("########## _break_start0: " + av1.getAttendance_break_start());
         System.out.println("########## _IDはははは: " + av1.getId());
         System.out.println("########## atWork: " + av1.getAttendance_at_work());
